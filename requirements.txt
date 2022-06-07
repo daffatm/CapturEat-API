@@ -1,4 +1,5 @@
 numpy
+gunicorn
 scipy
 Pillow
 cython
