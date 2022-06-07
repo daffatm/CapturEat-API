@@ -57,3 +57,4 @@ pip-delete-this-directory.txt
 .venv
 venv/
 ENV/
+logs/model/model.h5
