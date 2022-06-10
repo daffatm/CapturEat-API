@@ -25,13 +25,15 @@ def get_recommendation(food, title_list):
     return list_id
 
 def get_result(food):
-    result = {}
-    recipe = load_json('/content/recipes.json')
+    result = []
+    recipe = load_json(DATA_DIR)
     title_list = get_title_list(recipe)
     recommendation = get_recommendation(food, title_list)
 
-    for idx, item in enumerate(recommendation):
+    for item in recommendation:
         for i in range(0, len(recipe)):
             if str(recipe["{}".format(i)]['Id']) == item:
-                result[idx] = recipe["{}".format(i)]
+                result.append(recipe["{}".format(i)])
     return result
+
+print(get_result("bakso"))
