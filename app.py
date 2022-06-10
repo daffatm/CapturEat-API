@@ -1,8 +1,7 @@
-from concurrent.futures import thread
-from flask import Flask, request, jsonify, flash, redirect, url_for, render_template
+from flask import Flask, request, jsonify, flash, redirect
 from werkzeug.utils import secure_filename
 from configuration import load_model
-from keras import backend as K
+from recommend import get_result
 import os
 import cv2
 
@@ -46,9 +45,11 @@ def load():
         
         try:
             food = CLASSES[r['class_ids'][0]]
+            recommendation = get_result(food)
         except:
-            food = 'Unknown'
-        return jsonify({"class": food})
+            recommendation = 'Unknown'
+            
+        return jsonify({recommendation})
     return "<p>Get from Predict!</p>"
 if __name__ == '__main__':
     app.run(debug=True, threaded=False, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))

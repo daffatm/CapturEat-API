@@ -22,7 +22,7 @@ def get_recommendation(food, title_list):
 
 def get_result(food):
     result = {}
-    recipe = load_json('/content/recipes.json')
+    recipe = load_json(DATA_DIR)
     title_list = get_title_list(recipe)
     recommendation = get_recommendation(food, title_list)
 
@@ -33,5 +33,3 @@ def get_result(food):
                 if key not in result:
                     result[recipe["{}".format(i)]["Id"]] = recipe["{}".format(i)]
     return result
-
-get_result('rendang')
