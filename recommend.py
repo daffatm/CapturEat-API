@@ -13,23 +13,25 @@ def load_json(file):
 def get_title_list(recipe):
     title_list = []
     for i in range(0, len(recipe)):
-        title_list.append(recipe['{}'.format(i)]['Title'].lower())
+        title_list.append("{} {}".format(recipe['{}'.format(i)]['Title'].lower(), recipe['{}'.format(i)]['Id']))
     return title_list
 
 def get_recommendation(food, title_list):
     find_close_match = difflib.get_close_matches(food, title_list, n=10, cutoff=0.4)
-    return find_close_match
+    list_id = []
+    for item in find_close_match:
+        word = item.split()
+        list_id.append(word[-1])
+    return list_id
 
 def get_result(food):
     result = {}
-    recipe = load_json(DATA_DIR)
+    recipe = load_json('/content/recipes.json')
     title_list = get_title_list(recipe)
     recommendation = get_recommendation(food, title_list)
 
-    for item in recommendation:
+    for idx, item in enumerate(recommendation):
         for i in range(0, len(recipe)):
-            if recipe["{}".format(i)]['Title'].lower() == item:
-                key = recipe["{}".format(i)]["Id"]
-                if key not in result:
-                    result[recipe["{}".format(i)]["Id"]] = recipe["{}".format(i)]
+            if str(recipe["{}".format(i)]['Id']) == item:
+                result[idx] = recipe["{}".format(i)]
     return result
