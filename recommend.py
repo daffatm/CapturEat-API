@@ -13,7 +13,7 @@ def load_json(file):
 def get_title_list(recipe):
     title_list = []
     for i in range(0, len(recipe)):
-        title_list.append("{} {}".format(recipe['{}'.format(i)]['Title'].lower(), recipe['{}'.format(i)]['Id']))
+        title_list.append("{} {}".format(recipe['{}'.format(i)]['title'].lower(), recipe['{}'.format(i)]['id']))
     return title_list
 
 def get_recommendation(food, title_list):
@@ -32,8 +32,6 @@ def get_result(food):
 
     for item in recommendation:
         for i in range(0, len(recipe)):
-            if str(recipe["{}".format(i)]['Id']) == item:
+            if str(recipe["{}".format(i)]['id']) == item:
                 result.append(recipe["{}".format(i)])
     return result
-
-print(get_result("bakso"))
