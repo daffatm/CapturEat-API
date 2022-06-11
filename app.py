@@ -49,7 +49,7 @@ def load():
         except:
             recommendation = 'Unknown'
             
-        return jsonify({"recipe" : recommendation})
+        return jsonify({'recipe' : {recommendation}})
     return "<p>Get from Predict!</p>"
 if __name__ == '__main__':
     app.run(debug=True, threaded=False, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
