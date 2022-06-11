@@ -48,7 +48,16 @@ def load():
             food = CLASSES[r['class_ids'][0]]
             recommendation = get_result(food)
         except:
-            recommendation = 'Unknown'
+            recommendation = [
+                {
+                    "cleaned_ingredients": "",
+                    "id": 0,
+                    "image_link": "",
+                    "image_name": "",
+                    "instructions": "",
+                    "title": ""
+                }
+            ]
             
         return jsonify({'recipe' : recommendation})
     return "<p>Get from Predict!</p>"
