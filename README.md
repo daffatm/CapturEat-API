@@ -54,14 +54,16 @@ Hello from Predict!
 **Code**: ```200```
 **Response**: 
 ```
-[
-  Recipe{
-    "cleaned_ingredients": "string",
-    "id": integer,
-    "image_link": "string",
-    "image_name": "string",
-    "instructions": "string",
-    "title": "string"
-  }
-]
+{
+    "recipe": [
+        {
+            "cleaned_ingredients": string,
+            "id": integer,
+            "image_link": string,
+            "image_name": string,
+            "instructions": string,
+            "title": string
+        }
+    ]
+}
 ```
